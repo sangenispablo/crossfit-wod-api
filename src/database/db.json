@@ -85,6 +85,28 @@
       ],
       "createdAt": "4/7/2022 23:07:50",
       "updatedAt": "4/7/2022 23:07:50"
+    },
+    {
+      "name": "Core SUPER Buster",
+      "mode": "AMRAP TRACK 20129",
+      "equipment": [
+        "rack",
+        "barbell",
+        "abmat"
+      ],
+      "exercises": [
+        "15 toes to bars",
+        "10 thrusters",
+        "30 abmat sit-ups"
+      ],
+      "trainerTips": [
+        "Split your toes to bars into two sets maximum",
+        "Go unbroken on the thrusters",
+        "Take the abmat sit-ups as a chance to normalize your breath"
+      ],
+      "id": "9efb7bef-536b-48b3-8af7-5467ae6641a3",
+      "createdAt": "7/5/2022, 8:21:12 PM",
+      "updatedAt": "7/5/2022, 8:21:12 PM"
     }
   ]
 }

@@ -1,22 +1,41 @@
-// traigo el servicio para usarlo en el controlador
+// In src/controllers/workoutController.js
 const workoutService = require("../services/workoutService");
 
 const getAllWorkouts = (req, res) => {
-  // consumo el servicio
-  const allWorkouts = workoutService.getAllWorkouts();
-  // retorno el conjunto de dato
-  res.send({ status: "OK", data: allWorkouts });
+  try {
+    const allWorkouts = workoutService.getAllWorkouts();
+    res.send({ status: "OK", data: allWorkouts });
+  } catch (error) {
+    res
+      .status(error?.status || 500)
+      .send({ status: "FAILED", data: { error: error?.message || error } });
+  }
 };
 
 const getOneWorkout = (req, res) => {
-  const workout = workoutService.getOneWorkout();
-  res.send("Get an existing workout");
+  const {
+    params: { workoutId },
+  } = req;
+  if (!workoutId) {
+    res
+      .status(400)
+      .send({
+        status: "FAILED",
+        data: { error: "Parameter ':workoutId' can not be empty" },
+      });
+  }
+  try {
+    const workout = workoutService.getOneWorkout(workoutId);
+    res.send({ status: "OK", data: workout });
+  } catch (error) {
+    res
+      .status(error?.status || 500)
+      .send({ status: "FAILED", data: { error: error?.message || error } });
+  }
 };
 
 const createNewWorkout = (req, res) => {
-  // traemos el objeto del body del request
   const { body } = req;
-  // verifico que los datos que vienen en el body no sean nullos
   if (
     !body.name ||
     !body.mode ||
@@ -24,9 +43,17 @@ const createNewWorkout = (req, res) => {
     !body.exercises ||
     !body.trainerTips
   ) {
+    res
+      .status(400)
+      .send({
+        status: "FAILED",
+        data: {
+          error:
+            "One of the following keys is missing or is empty in request body: 'name', 'mode', 'equipment', 'exercises', 'trainerTips'",
+        },
+      });
     return;
   }
-  // creamos el objeto nuevo
   const newWorkout = {
     name: body.name,
     mode: body.mode,
@@ -34,20 +61,59 @@ const createNewWorkout = (req, res) => {
     exercises: body.exercises,
     trainerTips: body.trainerTips,
   };
-  // uso el servicio para que mediante utils se guarde en el archivo JSON
-  const createdWorkout = workoutService.createNewWorkout(newWorkout);
-  // retorno al cliente el status 201 y el nuevo objeto agregado
-  res.status(201).send({ status: "OK", data: createdWorkout });
+  try {
+    const createdWorkout = workoutService.createNewWorkout(newWorkout);
+    res.status(201).send({ status: "OK", data: createdWorkout });
+  } catch (error) {
+    res
+      .status(error?.status || 500)
+      .send({ status: "FAILED", data: { error: error?.message || error } });
+  }
 };
 
 const updateOneWorkout = (req, res) => {
-  const updatedWorkout = workoutService.updateOneWorkout();
-  res.send("Update an existing workout");
+  const {
+    body,
+    params: { workoutId },
+  } = req;
+  if (!workoutId) {
+    res
+      .status(400)
+      .send({
+        status: "FAILED",
+        data: { error: "Parameter ':workoutId' can not be empty" },
+      });
+  }
+  try {
+    const updatedWorkout = workoutService.updateOneWorkout(workoutId, body);
+    res.send({ status: "OK", data: updatedWorkout });
+  } catch (error) {
+    res
+      .status(error?.status || 500)
+      .send({ status: "FAILED", data: { error: error?.message || error } });
+  }
 };
 
 const deleteOneWorkout = (req, res) => {
-  workoutService.deleteOneWorkout();
-  res.send("Delete an existing workout");
+  const {
+    params: { workoutId },
+  } = req;
+  if (!workoutId) {
+    res
+      .status(400)
+      .send({
+        status: "FAILED",
+        data: { error: "Parameter ':workoutId' can not be empty" },
+      });
+  }
+  try {
+    workoutService.deleteOneWorkout(workoutId);
+    res.status(204).send({ status: "OK" });
+  } catch (error) {
+    res
+      .status(error?.status || 500)
+      .send({ status: "FAILED", data: { error: error?.message || error } });
+  }
 };
 
 module.exports = {
@@ -56,4 +122,5 @@ module.exports = {
   createNewWorkout,
   updateOneWorkout,
   deleteOneWorkout,
+  // getRecordsForWorkout,
 };

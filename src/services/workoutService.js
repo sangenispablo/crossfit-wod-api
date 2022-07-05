@@ -1,38 +1,55 @@
-// importo un paquete para generar uui
+// In src/services/workoutService.js
 const { v4: uuid } = require("uuid");
-
-// traigo las funciones para manejar la base de datos y la meto a todas en Workout
 const Workout = require("../database/Workout");
 
 const getAllWorkouts = () => {
-  // asigno a una const todos los entrenos
-  const allWorkouts = Workout.getAllWorkouts();
-  // y devuelvo esos datos al controlador
-  return allWorkouts;
+  try {
+    const allWorkouts = Workout.getAllWorkouts();
+    return allWorkouts;
+  } catch (error) {
+    throw error;
+  }
 };
 
-const getOneWorkout = () => {
-  return;
+const getOneWorkout = (workoutId) => {
+  try {
+    const workout = Workout.getOneWorkout(workoutId);
+    return workout;
+  } catch (error) {
+    throw error;
+  }
 };
 
 const createNewWorkout = (newWorkout) => {
-  // creo el objeto con el parametro mas otras propiedades
   const workoutToInsert = {
-    id: uuid(),
     ...newWorkout,
-    createdAt: new Date().toLocaleString("es-AR"),
-    updatedAt: new Date().toLocaleString("es-AR"),
+    id: uuid(),
+    createdAt: new Date().toLocaleString("en-US", { timeZone: "UTC" }),
+    updatedAt: new Date().toLocaleString("en-US", { timeZone: "UTC" }),
   };
-  const createdWorkout = Workout.createNewWorkout(workoutToInsert);
-  return createdWorkout;
+  try {
+    const createdWorkout = Workout.createNewWorkout(workoutToInsert);
+    return createdWorkout;
+  } catch (error) {
+    throw error;
+  }
 };
 
-const updateOneWorkout = () => {
-  return;
+const updateOneWorkout = (workoutId, changes) => {
+  try {
+    const updatedWorkout = Workout.updateOneWorkout(workoutId, changes);
+    return updatedWorkout;
+  } catch (error) {
+    throw error;
+  }
 };
 
-const deleteOneWorkout = () => {
-  return;
+const deleteOneWorkout = (workoutId) => {
+  try {
+    Workout.deleteOneWorkout(workoutId);
+  } catch (error) {
+    throw error;
+  }
 };
 
 module.exports = {

@@ -1,0 +1,60 @@
+{
+	"info": {
+		"_postman_id": "afc80163-b5d2-484a-95e2-226672eecfcd",
+		"name": "crossfit-wod-api",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "7376726",
+		"_collection_link": "https://sangenispablo.postman.co/workspace/tony~3fad2730-dfa4-45cc-9fea-7128e4cfb5ab/collection/7376726-afc80163-b5d2-484a-95e2-226672eecfcd?action=share&source=collection_link&creator=7376726"
+	},
+	"item": [
+		{
+			"name": "getAllWorkouts",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:3000/api/v1/workouts",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"v1",
+						"workouts"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "createNewWorkout",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"Core Buster\",\n    \"mode\": \"AMRAP 20\",\n    \"equipment\": [\n        \"rack\",\n        \"barbell\",\n        \"abmat\"\n    ],\n    \"exercises\": [\n        \"15 toes to bars\",\n        \"10 thrusters\",\n        \"30 abmat sit-ups\"\n    ],\n    \"trainerTips\": [\n        \"Split your toes to bars into two sets maximum\",\n        \"Go unbroken on the thrusters\",\n        \"Take the abmat sit-ups as a chance to normalize your breath\"\n    ]\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3000/api/v1/workouts",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"v1",
+						"workouts"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

@@ -28,6 +28,78 @@
 			"response": []
 		},
 		{
+			"name": "getOneWorkout",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:3000/api/v1/workouts/d8be2362-7b68-4ea4-a1f6-03f8bc4eede7",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"v1",
+						"workouts",
+						"d8be2362-7b68-4ea4-a1f6-03f8bc4eede7"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "deleteOneWorkout",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "localhost:3000/api/v1/workouts/de0324c5-38fd-488c-b938-e2cef8cb05a7",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"v1",
+						"workouts",
+						"de0324c5-38fd-488c-b938-e2cef8cb05a7"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "updatedWorkout",
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"Heavy DT Update\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3000/api/v1/workouts/d8be2362-7b68-4ea4-a1f6-03f8bc4eede7",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"v1",
+						"workouts",
+						"d8be2362-7b68-4ea4-a1f6-03f8bc4eede7"
+					]
+				}
+			},
+			"response": []
+		},
+		{
 			"name": "createNewWorkout",
 			"request": {
 				"method": "POST",
